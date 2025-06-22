@@ -43,4 +43,4 @@ python parsedataToSynAf.py  # Convert to SynAF format
 - requests
 - lxml
 - spacy
-- en_core_web_sm language model 
+- en_core_web_sm language model
