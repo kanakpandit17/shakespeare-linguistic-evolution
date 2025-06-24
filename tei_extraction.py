@@ -5,6 +5,7 @@ import json
 NS = {'tei': 'http://www.tei-c.org/ns/1.0'}
 tei_dir = "tei_files"
 tei_data = []
+tei_token_data = [] # list for lemmatisation
 
 # Mapping play name to year using .xml filenames
 play_year_map = {
@@ -50,6 +51,7 @@ play_year_map = {
 
 def extract_speaker_lines(filepath, year):
     data = []
+    tokens_data = [] # store words as tokens for later use with their lemmas
     try:
         tree = ET.parse(filepath)
         root = tree.getroot()
@@ -60,20 +62,39 @@ def extract_speaker_lines(filepath, year):
         sp_blocks = root.findall(".//tei:sp", namespaces=NS)
         for sp in sp_blocks:
             speaker_elem = sp.find("tei:speaker", namespaces=NS)
-            speaker = speaker_elem.text.strip() if speaker_elem is not None else sp.attrib.get("who", "Unknown")
+            speaker = (
+                ' '.join(w.text.strip() for w in speaker_elem.findall("tei:w", namespaces=NS) if w.text).strip()
+                if speaker_elem is not None
+                else sp.attrib.get("who", "Unknown")
+            ) # added w-tag child to localise 'Speaker' inside TEI structure
 
-            for l in sp.findall(".//tei:l", namespaces=NS):
-                words = ' '.join((elem.text or '') for elem in l if elem.tag.endswith('w') or elem.tag.endswith('pc')).strip()
-                if words:
-                    data.append({
-                        "title": title,
-                        "year": year,
-                        "speaker": speaker,
-                        "line": words
-                    })
+            for tag in ["l", "p"]: # finds tag for verse play parts <l>...</l> and prose plays <p>...</p>
+                for sent in sp.findall(f".//tei:{tag}", namespaces=NS):
+                    words = ' '.join((elem.text or '') for elem in sent if elem.tag.endswith('w') or elem.tag.endswith('pc')).strip()
+                    if words:
+                        data.append({
+                            "title": title,
+                            "year": year,
+                            "speaker": speaker,
+                            "line": words
+                        })
+
+                    # Stores sentences as dict with Token (key) and lemma (value)
+                    tokens = [
+                        {elem.text.strip(): elem.attrib.get("lemma", "")}
+                        for elem in sent
+                        if elem.tag.endswith('w') and elem.text
+                    ]
+                    if tokens:
+                        tokens_data.append({
+                            "title": title,
+                            "year": year,
+                            "speaker": speaker,
+                            "tokens": tokens
+                        })
     except ET.ParseError as e:
         print(f"Parse error in {filepath}: {e}")
-    return data
+    return data, tokens_data
 
 for filename in os.listdir(tei_dir):
     if filename.endswith(".xml"):
@@ -82,7 +103,12 @@ for filename in os.listdir(tei_dir):
         if year == "Unknown":
             print(f"Year not found for: {filename}")
         else:
-            tei_data.extend(extract_speaker_lines(filepath, year))
+            lines, tokens = extract_speaker_lines(filepath, year) # added to store tokens_data
+            tei_data.extend(lines)
+            tei_token_data.extend(tokens)
 
 with open("parsed_lines.json", "w", encoding="utf-8") as f:
     json.dump(tei_data, f, ensure_ascii=False, indent=2)
+# creates json file with tokens associated with their lemmas
+with open("tokenized_lines.json", "w", encoding="utf-8") as f:
+    json.dump(tei_token_data, f, ensure_ascii=False, indent=2)
