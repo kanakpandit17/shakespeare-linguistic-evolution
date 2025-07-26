@@ -196,6 +196,7 @@ LIMIT 100
 
 Note: Queries containing r:DEPENDS_ON require SynAF annotations to be present in your Neo4j database.
 
+<<<<<<< HEAD
 Below is the demo of how the Neo4j analysis works:
 video
 
@@ -226,6 +227,8 @@ image 7
 The following figure explores the frequency of occurrence of POS Tag over Years
 image 8
   
+=======
+>>>>>>> 17e0674 (Save work before pull)
 
 ## Troubleshooting
 - Ensure all required libraries are installed (pip install -r requirements.txt)
@@ -234,8 +237,11 @@ image 8
 
 - XML parsing errors usually indicate invalid TEI structure
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 17e0674 (Save work before pull)
 ## Contributors
 [Kanak ](https://github.com/kanakpandit17)
 
