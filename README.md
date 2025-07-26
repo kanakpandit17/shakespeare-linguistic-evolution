@@ -55,7 +55,7 @@ For visualization or Neo4j-based processing, explore neo4jvis.py or related scri
 
 ## Project Structure
 
-
+```
 TextTechnology/
 ├── neo4jvis.py                           # Visualization with Neo4j
 ├── tei_extraction.py                    # Core XML parsing logic
@@ -64,7 +64,9 @@ TextTechnology/
 ├── tokenized_lines.json                 # Token-level annotation data
 ├── tei_speaker_lines_with_corrected_year.csv  # Speaker data with metadata
 ├── tei_files_others/                    # Additional TEI XML documents
-├── synaf_xml/                           # SynAF-based annotation files
+└── synaf_xml/                           # SynAF-based annotation files
+```
+
 
 
 
@@ -112,4 +114,5 @@ Ensure Neo4j is running and properly configured beforehand.
 
 [Luis](https://github.com/avlmg)
 
+[Prasoon](https://github.com/Prasoon-millennial)
 
