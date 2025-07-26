@@ -85,6 +85,8 @@ Some scripts may require you to adjust file paths or configure Neo4j connection 
 
 ## Documentation
 Inline comments are provided in most Python files to aid understanding. For deeper insight into TEI or SynAF standards, consult their official documentation.
+- TEI: https://tei-c.org/release/doc/tei-p5-doc/en/html/index.html
+- SynAF: https://www.iso.org/obp/ui/en/#iso:std:iso:24615:-1:ed-1:v1:en
 
 ## Examples
 To process and analyze a TEI XML file:
@@ -99,15 +101,15 @@ python neo4jvis.py
 Ensure Neo4j is running and properly configured beforehand.
 
 ## Troubleshooting
-Ensure all required libraries are installed (pip install -r requirements.txt)
+- Ensure all required libraries are installed (pip install -r requirements.txt)
 
-For Neo4j issues, verify credentials and connection settings
+- For Neo4j issues, verify credentials and connection settings
 
-XML parsing errors usually indicate invalid TEI structure
+- XML parsing errors usually indicate invalid TEI structure
 
 ## Contributors
-Kanak
+[Kanak ](https://github.com/kanakpandit17)
 
-Prasoon
+[Luis](https://github.com/avlmg)
 
-Luis
+
