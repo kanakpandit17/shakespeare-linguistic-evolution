@@ -2,22 +2,29 @@
 
 ## Introduction
 
-This project focuses on analyzing and comparing syntactical annotations across historical drama texts. It supports working with TEI-encoded documents and SynAF-based annotations, providing tools for extraction, transformation, and visualization of linguistic features. The project is particularly useful for digital humanities scholars working with corpora like DraCor (Drama Corpora) and similar resources.
+This project aims to investigate the linguistic evolution of William Shakespeare's literary works, focusing on plays written between 1591 and 1613. Our approach combines traditional corpus linguistics with modern natural language processing (NLP) methods. Specifically, we study how word usage, syntactic structures, and parts-of-speech (POS) frequencies changed over time in Shakespeare's plays. In addition to statistical metrics, we employ dependency parsing and graph-based representations to analyze structural relationships within the text.
+
+We start with TEI-encoded XML files representing Shakespearean plays, which we parse into JSON format. These files are tokenized, annotated with lemmas and POS tags, and serialized for further processing. We further enrich the text data by creating syntactic graphs using SynAF and storing them in Neo4j, a graph database. The motivation behind this project is to offer deeper insights into authorial style, historical linguistics, and computational literature analysis.
+
+By focusing on syntactic dependencies and lexeme patterns, we explore how grammatical preferences shifted in Shakespeare's evolving style, and whether syntactic complexity varied over time. This multi-layered approach highlights both stylistic and linguistic changes with temporal precision.
+
+Furthermore, this investigation aims to answer broader research questions: Does Shakespeare’s syntax evolve toward more complex constructions over time? Are certain lexical choices more dominant in early or late works? How do syntactic graphs of characters compare across genres (tragedy vs. comedy)? This project delivers tools and annotated data for addressing such inquiries.
 
 ## Table of Contents
 
-•⁠  ⁠[Introduction](#introduction)
-•⁠  ⁠[Installation](#installation)
-•⁠  ⁠[Usage](#usage)
-•⁠  ⁠[Features](#features)
-•⁠  ⁠[Project Structure](#project-structure)
-•⁠  ⁠[Dependencies](#dependencies)
-•⁠  ⁠[Configuration](#configuration)
-•⁠  ⁠[Documentation](#documentation)
-•⁠  ⁠[Examples](#examples)
-•⁠  ⁠[Troubleshooting](#troubleshooting)
-•⁠  ⁠[Contributors](#contributors)
-•⁠  ⁠[License](#license)
+- [Introduction](#introduction)  
+- [Installation](#installation)  
+- [Usage](#usage)  
+- [Features](#features)  
+- [Project Structure](#project-structure)  
+- [Dependencies](#dependencies)  
+- [Configuration](#configuration)  
+- [Documentation](#documentation)  
+- [Examples](#examples)  
+- [Troubleshooting](#troubleshooting)  
+- [Contributors](#contributors)  
+- [License](#license)
+
 
 ## Installation
 
