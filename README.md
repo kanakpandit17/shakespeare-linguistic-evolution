@@ -96,12 +96,16 @@ Inline comments are provided in most Python files to aid understanding. For deep
 ## Examples
 To process and analyze a TEI XML file:
 
+```
 python tei_extraction.py
+```
 
 
 ## For Neo4j graph export:
 
+```
 python neo4jvis.py
+```
 
 Ensure Neo4j is running and properly configured beforehand.
 
