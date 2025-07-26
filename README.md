@@ -140,6 +140,11 @@ ORDER BY year, freq DESC
 RETURN year, lemma, freq
 LIMIT 50
 ```
+```text
+Sample Output
+
+```
+
 
 ### Co-occurrence of words
 
@@ -191,6 +196,36 @@ LIMIT 100
 
 Note: Queries containing r:DEPENDS_ON require SynAF annotations to be present in your Neo4j database.
 
+Below is the demo of how the Neo4j analysis works:
+video
+
+
+
+## Results
+Some of the results are attached here:
+The below figure shows the comparison of Top 10 triplets in year 1599:
+image 2
+
+The below figure explores the network around a particular word-”King”:
+image 3
+
+Sentiment Analysis is carried out to examine the emotions behind his works. The nltk VADER sentiment analyzer is used to evaluate the emotional tone of text.
+The below figure shows the average sentiment of Shakespeare's plays over time.
+image 4
+
+The following figure shows the distribution of Sentiment Scores per Play in chronological order
+image 5
+
+
+The following figure compares the sentiment evolution of two plays side-by-side, average sentiment and emotional contrast score over line chunks.
+image 6
+
+The below figure shows Top Words per Year in Shakespeare's Plays where Bubble Size = Frequency
+image 7
+
+The following figure explores the frequency of occurrence of POS Tag over Years
+image 8
+  
 
 ## Troubleshooting
 - Ensure all required libraries are installed (pip install -r requirements.txt)
@@ -198,6 +233,8 @@ Note: Queries containing r:DEPENDS_ON require SynAF annotations to be present in
 - For Neo4j issues, verify credentials and connection settings
 
 - XML parsing errors usually indicate invalid TEI structure
+
+
 
 ## Contributors
 [Kanak ](https://github.com/kanakpandit17)
