@@ -28,9 +28,10 @@ Furthermore, this investigation aims to answer broader research questions: Does 
 
 ## Installation
 
-1.⁠ ⁠Clone the repository or download the source.
-2.⁠ ⁠Navigate to the project directory.
-3.⁠ ⁠Install the required dependencies:
+1. Clone the repository or download the source.  
+2. Navigate to the project directory.  
+3. Install the required dependencies.
+
 
 ```bash
 pip install -r requirements.txt
