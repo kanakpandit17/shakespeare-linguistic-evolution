@@ -1,6 +1,6 @@
 # Annotation Encoding – Comparing Syntactical Annotations in Historical Drama
 
-## Introduction
+## Overview
 
 This project aims to investigate the linguistic evolution of William Shakespeare's literary works, focusing on plays written between 1591 and 1613. Our approach combines traditional corpus linguistics with modern natural language processing (NLP) methods. Specifically, we study how word usage, syntactic structures, and parts-of-speech (POS) frequencies changed over time in Shakespeare's plays. In addition to statistical metrics, we employ dependency parsing and graph-based representations to analyze structural relationships within the text.
 
