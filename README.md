@@ -55,7 +55,7 @@ For visualization or Neo4j-based processing, explore neo4jvis.py or related scri
 
 ## Project Structure
 
-```bash
+
 TextTechnology/
 ├── neo4jvis.py                           # Visualization with Neo4j
 ├── tei_extraction.py                    # Core XML parsing logic
@@ -68,7 +68,7 @@ TextTechnology/
 
 
 
-## **Dependencies**
+## Dependencies
 
 Manually listed here (or see `requirements.txt`):
 
