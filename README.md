@@ -15,15 +15,16 @@ Furthermore, this investigation aims to answer broader research questions: Does 
 - [Introduction](#introduction)  
 - [Installation](#installation)  
 - [Usage](#usage)  
-- [Features](#features)  
+- [Features](#features)
 - [Project Structure](#project-structure)  
 - [Dependencies](#dependencies)  
 - [Configuration](#configuration)  
 - [Documentation](#documentation)  
-- [Examples](#examples)  
+- [Examples](#examples)
+- [Queries](#queries)
 - [Troubleshooting](#troubleshooting)  
 - [Contributors](#contributors)  
-- [License](#license)
+
 
 
 ## Installation
@@ -108,6 +109,88 @@ python neo4jvis.py
 ```
 
 Ensure Neo4j is running and properly configured beforehand.
+
+### Queries
+# Neo4j Queries for Shakespeare Linguistic Analysis
+
+---
+
+### See words from a specific year:
+
+```cypher
+MATCH (w:Word {year: "1595"})
+RETURN w.word, w.lemma, w.pos, w.text_title
+LIMIT 50
+```
+
+### Explore the network around a particular word:
+
+```cypher
+MATCH (w:Word {word: "king"})-[r:DEPENDS_ON]-(related)
+RETURN w, r, related
+LIMIT 50
+```
+
+### Find the most common lemmas by year:
+
+```cypher
+MATCH (w:Word)
+WITH w.year AS year, w.lemma AS lemma, COUNT(*) AS freq
+ORDER BY year, freq DESC
+RETURN year, lemma, freq
+LIMIT 50
+```
+
+### Co-occurrence of words
+
+
+```cypher
+MATCH (w1:Word), (w2:Word)
+WHERE w1.sentence_id = w2.sentence_id AND w1.lemma <> w2.lemma
+WITH w1.lemma AS lemma1, w2.lemma AS lemma2, COUNT(*) AS cooccurrence
+WHERE cooccurrence > 5
+MERGE (l1:Lemma {name: lemma1})
+MERGE (l2:Lemma {name: lemma2})
+MERGE (l1)-[r:CO_OCCURS_WITH]->(l2)
+SET r.weight = cooccurrence
+RETURN l1, r, l2
+LIMIT 200
+```
+
+### Queries requiring SynAF annotations (r:DEPENDS_ON relationships)
+
+```cypher
+MATCH (:Word)-[r:DEPENDS_ON]->(:Word)
+WITH r.dep AS dep, COUNT(*) AS freq, COLLECT(DISTINCT startNode(r).year) AS years
+UNWIND years AS year
+MERGE (d:DepType {name: dep})
+MERGE (y:Year {year: year})
+MERGE (d)-[rel:USED_IN]->(y)
+SET rel.freq = freq
+RETURN d, rel, y
+LIMIT 100
+```
+
+### Co-occurrence of words filtered by POS and year:
+
+```cypher
+MATCH (w1:Word)-[r:DEPENDS_ON]->(w2:Word)
+WHERE toInteger(w1.year) >= 1500 AND toInteger(w1.year) < 1800
+  AND w1.pos IN ['VERB', 'NOUN', 'ADJ', 'PRON']
+  AND w2.pos IN ['VERB', 'NOUN', 'ADJ', 'PRON']
+WITH w1.lemma AS lemma1, w2.lemma AS lemma2, w1.pos AS pos1, w2.pos AS pos2, COUNT(*) AS freq
+WHERE freq > 5 AND lemma1 <> lemma2
+MERGE (l1:Lemma {name: lemma1, pos: pos1})
+MERGE (l2:Lemma {name: lemma2, pos: pos2})
+MERGE (l1)-[co:CO_OCCURS_WITH]->(l2)
+SET co.weight = freq
+RETURN l1.name, l1.pos, l2.name, l2.pos, co.weight
+ORDER BY co.weight DESC
+LIMIT 100
+```
+
+Note: Queries containing r:DEPENDS_ON require SynAF annotations to be present in your Neo4j database.
+
 
 ## Troubleshooting
 - Ensure all required libraries are installed (pip install -r requirements.txt)
