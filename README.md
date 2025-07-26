@@ -44,74 +44,68 @@ python tei_extraction.py
 
 For visualization or Neo4j-based processing, explore neo4jvis.py or related scripts.
 
-Features
-✅ TEI and SynAF XML parsing
+## Features
 
-✅ Syntactic annotation extraction and comparison
+✅ TEI and SynAF XML parsing  
+✅ Syntactic annotation extraction and comparison  
+✅ JSON and CSV export formats  
+✅ Neo4j integration for graph-based visualization  
+✅ Tokenized line data for detailed linguistic analysis  
 
-✅ JSON and CSV export formats
 
-✅ Neo4j integration for graph-based visualization
+## Project Structure
 
-✅ Tokenized line data for detailed linguistic analysis
-
-Project Structure
-graphql
-Copy
-Edit
+```bash
 TextTechnology/
-├── neo4jvis.py                         # Visualization with Neo4j
-├── tei_extraction.py                  # Core XML parsing logic
-├── dracorshakes.py                    # Processing DraCor Shakespeare data
-├── otherenglish.py                    # Additional English-language processing
-├── tokenized_lines.json               # Token-level annotation data
+├── neo4jvis.py                           # Visualization with Neo4j
+├── tei_extraction.py                    # Core XML parsing logic
+├── dracorshakes.py                      # Processing DraCor Shakespeare data
+├── otherenglish.py                      # Additional English-language processing
+├── tokenized_lines.json                 # Token-level annotation data
 ├── tei_speaker_lines_with_corrected_year.csv  # Speaker data with metadata
-├── tei_files_others/                  # Additional TEI XML documents
-├── synaf_xml/                         # SynAF-based annotation files
-Dependencies
-Manually listed here (or see requirements.txt):
+├── tei_files_others/                    # Additional TEI XML documents
+├── synaf_xml/                           # SynAF-based annotation files
 
-lxml
 
-pandas
 
-neo4j
+## Dependencies
 
-json
+Manually listed here (or see `requirements.txt`):
 
-csv
+- `lxml`
+- `pandas`
+- `neo4j`
+- `json`
+- `csv`
+- `os`, `glob`, `re` (standard libraries)
 
-os, glob, re (standard libraries)
 
-Configuration
+## Configuration
 Some scripts may require you to adjust file paths or configure Neo4j connection details directly within the Python files.
 
-Documentation
+## Documentation
 Inline comments are provided in most Python files to aid understanding. For deeper insight into TEI or SynAF standards, consult their official documentation.
 
-Examples
+## Examples
 To process and analyze a TEI XML file:
 
-bash
-Copy
-Edit
 python tei_extraction.py
-For Neo4j graph export:
 
-bash
-Copy
-Edit
+
+## For Neo4j graph export:
+
 python neo4jvis.py
+
 Ensure Neo4j is running and properly configured beforehand.
 
-Troubleshooting
+## Troubleshooting
 Ensure all required libraries are installed (pip install -r requirements.txt)
 
 For Neo4j issues, verify credentials and connection settings
 
 XML parsing errors usually indicate invalid TEI structure
 
-Contributors
+## Contributors
 Kanak
 
 Prasoon
