@@ -32,15 +32,18 @@ Furthermore, this investigation aims to answer broader research questions: Does 
 2. Navigate to the project directory.  
 3. Install the required dependencies.
 
-
+```
 pip install -r requirements.txt
+```
 
 Note: Some components may require a local Neo4j database instance if using neo4jvis.py.
 
 Usage
 Run tei_extraction.py to process TEI-encoded XML files:
 
+```
 python tei_extraction.py
+```
 
 For visualization or Neo4j-based processing, explore neo4jvis.py or related scripts.
 
