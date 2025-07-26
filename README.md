@@ -68,7 +68,7 @@ TextTechnology/
 
 
 
-## Dependencies
+## **Dependencies**
 
 Manually listed here (or see `requirements.txt`):
 
