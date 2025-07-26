@@ -33,8 +33,7 @@ Furthermore, this investigation aims to answer broader research questions: Does 
 3. Install the required dependencies.
 
 
-```bash
-pip install -r requirements.txt ```
+<pre> ```bash pip install -r requirements.txt ``` </pre>
 
 Note: Some components may require a local Neo4j database instance if using neo4jvis.py.
 
