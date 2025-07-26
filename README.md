@@ -1,7 +1,24 @@
 # Annotation Encoding – Comparing Syntactical Annotations in Historical Drama
 
-## Overview
 
+## Table of Contents
+
+- [Introduction](#introduction)  
+- [Installation](#installation)
+- [Data](#data)  
+- [Features](#features)
+- [Project Structure](#project-structure)  
+- [Dependencies](#dependencies)  
+- [Configuration](#configuration)  
+- [Documentation](#documentation)  
+- [Examples](#examples)
+- [Queries](#queries)
+- [Demo](#Demo)
+- [Results](#Results)
+- [Troubleshooting](#troubleshooting)  
+- [Contributors](#contributors)  
+
+## Introduction
 This project aims to investigate the linguistic evolution of William Shakespeare's literary works, focusing on plays written between 1591 and 1613. Our approach combines traditional corpus linguistics with modern natural language processing (NLP) methods. Specifically, we study how word usage, syntactic structures, and parts-of-speech (POS) frequencies changed over time in Shakespeare's plays. In addition to statistical metrics, we employ dependency parsing and graph-based representations to analyze structural relationships within the text.
 
 We start with TEI-encoded XML files representing Shakespearean plays, which we parse into JSON format. These files are tokenized, annotated with lemmas and POS tags, and serialized for further processing. We further enrich the text data by creating syntactic graphs using SynAF and storing them in Neo4j, a graph database. The motivation behind this project is to offer deeper insights into authorial style, historical linguistics, and computational literature analysis.
@@ -10,32 +27,12 @@ By focusing on syntactic dependencies and lexeme patterns, we explore how gramma
 
 Furthermore, this investigation aims to answer broader research questions: Does Shakespeare’s syntax evolve toward more complex constructions over time? Are certain lexical choices more dominant in early or late works? How do syntactic graphs of characters compare across genres (tragedy vs. comedy)? This project delivers tools and annotated data for addressing such inquiries.
 
-## Table of Contents
-
-- [Introduction](#introduction)  
-- [Installation](#installation)  
-- [Usage](#usage)  
-- [Features](#features)
-- [Project Structure](#project-structure)  
-- [Dependencies](#dependencies)  
-- [Configuration](#configuration)  
-- [Documentation](#documentation)  
-- [Examples](#examples)
-- [Queries](#queries)
-- [Troubleshooting](#troubleshooting)  
-- [Contributors](#contributors)  
-
-
-
 ## Installation
 
 1. Clone the repository or download the source.  
 2. Navigate to the project directory.  
 3. Install the required dependencies.
 
-```
-pip install -r requirements.txt
-```
 
 Note: Some components may require a local Neo4j database instance if using neo4jvis.py.
 
@@ -47,6 +44,15 @@ python tei_extraction.py
 ```
 
 For visualization or Neo4j-based processing, explore neo4jvis.py or related scripts.
+
+
+
+## Data
+- All plays were downloaded from [DraCor](https://dracor.org/shake), a corpus of Shakespeare’s plays in TEI-encoded format. These files are stored in the tei_files/ directory.
+
+- Syntactic annotation of the TEI data was done using SynAF, an extension built as part of this project. The annotated output is stored in the synaf_xml/ directory.
+To keep the repository lightweight, only data from A Midsummer Night’s Dream (1595) has been included, as the full SynAF output consists of many XML files.
+
 
 ## Features
 
@@ -61,14 +67,14 @@ For visualization or Neo4j-based processing, explore neo4jvis.py or related scri
 
 ```
 TextTechnology/
-├── neo4jvis.py                           # Visualization with Neo4j
+├── neo4jvis.py                          # Visualization with Neo4j
 ├── tei_extraction.py                    # Core XML parsing logic
 ├── dracorshakes.py                      # Processing DraCor Shakespeare data
 ├── otherenglish.py                      # Additional English-language processing
 ├── tokenized_lines.json                 # Token-level annotation data
 ├── tei_speaker_lines_with_corrected_year.csv  # Speaker data with metadata
-├── tei_files_others/                    # Additional TEI XML documents
-└── synaf_xml/                           # SynAF-based annotation files
+├── tei_files_sample/                    # TEI XML documents
+└── synaf_xml_sample/                           # SynAF-based annotation files
 ```
 
 
@@ -76,7 +82,7 @@ TextTechnology/
 
 ## Dependencies
 
-Manually listed here (or see `requirements.txt`):
+Manually listed here:
 
 - `lxml`
 - `pandas`
@@ -140,11 +146,8 @@ ORDER BY year, freq DESC
 RETURN year, lemma, freq
 LIMIT 50
 ```
-```text
-Sample Output
 
-```
-
+## Sample Output
 
 ### Co-occurrence of words
 
@@ -196,56 +199,92 @@ LIMIT 100
 
 Note: Queries containing r:DEPENDS_ON require SynAF annotations to be present in your Neo4j database.
 
-<<<<<<< HEAD
-Below is the demo of how the Neo4j analysis works:
-video
+Sample Output that uses 'DEPENDS_on' is mentioned below:
+<div align="center">
+  <img src="images/readme1.jpg" alt="Alt text"/>
+</div>
+
+
+### Demo
+
+Below is a demo of how the Neo4j analysis works:
+
+<div align="center">
+
+<a href="https://www.youtube.com/watch?v=tD6FVlw-viE" target="_blank">
+  <img src="https://img.youtube.com/vi/tD6FVlw-viE/0.jpg" alt="▶️ Watch Demo on YouTube" width="480"/>
+</a>
+
+<br>
+
+<a href="https://www.youtube.com/watch?v=tD6FVlw-viE" target="_blank">
+  <strong>▶️ Watch Demo on YouTube</strong>
+</a>
+
+</div>
+
+---
 
 
 
 ## Results
 Some of the results are attached here:
 The below figure shows the comparison of Top 10 triplets in year 1599:
-image 2
+<div align="center">
+  <img src="images/readme2.png" alt="Alt text"/>
+</div>
+
 
 The below figure explores the network around a particular word-”King”:
-image 3
+<div align="center">
+  <img src="images/readme3.jpg" alt="Alt text"/>
+</div>
+
 
 Sentiment Analysis is carried out to examine the emotions behind his works. The nltk VADER sentiment analyzer is used to evaluate the emotional tone of text.
 The below figure shows the average sentiment of Shakespeare's plays over time.
-image 4
+<div align="center">
+  <img src="images/readme4.jpg" alt="Alt text"/>
+</div>
+
 
 The following figure shows the distribution of Sentiment Scores per Play in chronological order
-image 5
+<div align="center">
+  <img src="images/readme5.jpg" alt="Alt text"/>
+</div>
 
 
 The following figure compares the sentiment evolution of two plays side-by-side, average sentiment and emotional contrast score over line chunks.
-image 6
+<div align="center">
+  <img src="images/readme6.jpg" alt="Alt text"/>
+</div>
+
 
 The below figure shows Top Words per Year in Shakespeare's Plays where Bubble Size = Frequency
-image 7
+<div align="center">
+  <img src="images/readme7.png" alt="Alt text"/>
+</div>
+
 
 The following figure explores the frequency of occurrence of POS Tag over Years
-image 8
+<div align="center">
+  <img src="images/readme8.png" alt="Alt text"/>
+</div>
+
   
-=======
->>>>>>> 17e0674 (Save work before pull)
 
 ## Troubleshooting
-- Ensure all required libraries are installed (pip install -r requirements.txt)
+- Ensure all required libraries are installed 
 
 - For Neo4j issues, verify credentials and connection settings
 
 - XML parsing errors usually indicate invalid TEI structure
 
-<<<<<<< HEAD
 
 
-=======
->>>>>>> 17e0674 (Save work before pull)
 ## Contributors
 [Kanak ](https://github.com/kanakpandit17)
 
 [Luis](https://github.com/avlmg)
 
 [Prasoon](https://github.com/Prasoon-millennial)
-
