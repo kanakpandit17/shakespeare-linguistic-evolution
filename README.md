@@ -48,9 +48,9 @@ For visualization or Neo4j-based processing, explore neo4jvis.py or related scri
 
 
 ## Data
-- All plays were downloaded from [DraCor](https://dracor.org/shake), a corpus of Shakespeare’s plays in TEI-encoded format. These files are stored in the tei_files/ directory.
+- All plays were downloaded from [DraCor](https://dracor.org/shake), a corpus of Shakespeare’s plays in TEI-encoded format. These files are stored in the tei_files_sample/ directory.
 
-- Syntactic annotation of the TEI data was done using SynAF, an extension built as part of this project. The annotated output is stored in the synaf_xml/ directory.
+- Syntactic annotation of the TEI data was done using SynAF, an extension built as part of this project. The annotated output is stored in the synaf_xml_sample/ directory.
 To keep the repository lightweight, only data from A Midsummer Night’s Dream (1595) has been included, as the full SynAF output consists of many XML files.
 
 
@@ -83,7 +83,6 @@ TextTechnology/
 ├── final.ipynb                          # Demo of the projects
 ├── parsedataToSynAf.py                  # Parses the data to SynAf structure
 ├── parse.py                             # Parses the TEI files
-└── 
 ```
 
 
