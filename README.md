@@ -74,7 +74,16 @@ TextTechnology/
 ├── tokenized_lines.json                 # Token-level annotation data
 ├── tei_speaker_lines_with_corrected_year.csv  # Speaker data with metadata
 ├── tei_files_sample/                    # TEI XML documents
-└── synaf_xml_sample/                           # SynAF-based annotation files
+├── synaf_xml_sample/                           # SynAF-based annotation files
+├── common_triplets.py                   # Analiser of different triplets sets per year
+├── sent_analyse_author.py               # Extracts overall sentiment information of author's works
+├── postagfrecuency.py                   # Distribution over years for a selected group of POS tags
+├── shakespeare_sentiment.csv            # Saved sentiment score information of Shakespeare's plays
+├── sent_flow_plays.py                   # Analiser of sentiment evolution over the course of plays (single/comparisiton option possible) 
+├── final.ipynb                          # Demo of the projects
+├── parsedataToSynAf.py                  # Parses the data to SynAf structure
+├── parse.py                             # Parses the TEI files
+└── 
 ```
 
 
